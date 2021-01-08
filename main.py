@@ -61,7 +61,7 @@ def main():
         importance = [0] * (N + 1)
         for i in range(1,N + 1):
                 LS[i] = fetch_raw_data(i)
-                importance[i] = 1 / i
+                importance[i] = i / N
 
         num = 1
         list = [0] * (N + 1)
