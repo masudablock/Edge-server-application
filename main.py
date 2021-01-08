@@ -3,7 +3,7 @@ import glob
 import json
 import time
 
-import determine_execute
+import determine_execute as det
 
 # 任意のデバイスの生データの一斉取得。
 # @parameter:
@@ -58,6 +58,7 @@ def main():
         #初期データ取得
         LS = {}
         N = 10
+        over = 0
         importance = [0] * (N + 1)
         for i in range(1,N + 1):
                 LS[i] = fetch_raw_data(i)
@@ -77,12 +78,17 @@ def main():
                 if last_frame_number > 1:
                         #書き込み判定
                         execute = 0
-                        if last_frame_number % 10 == 0:
-                                execute = determine_execute(camera_id,count,importance,N)
+                        if last_frame_number % 10 == 0 and over == 1:
+                                execute = det.determine_execute(camera_id,count,importance,N)
+                        if execute == 2:
+                                execute = 1
+                                over = 1
                         if execute == 0:
                                 count[camera_id] += 1
                         else:
                                 count[camera_id] = 0
+                        if camera_id == N:
+                                over = 0
                         #多重ハッシュ化
                         hash = doble_hash(before_frame_hash[camera_id],list[camera_id])
                         #json出力
