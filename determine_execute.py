@@ -8,8 +8,8 @@ def determine_execute(camera_id,count,importance,N):
         judge = 0
         max_index = 0
         for i in range(1,N+1):
-                if judge > count[i] / importance[i]:
-                        judge = count[i] / importance[i]
+                if judge > count[i] * (100 ** (importance[i] - 1)):
+                        judge = count[i] * (100 ** (importance[i] - 1))
                         max_index = i
         if count[camera_id] > 1000:
                 return 1
