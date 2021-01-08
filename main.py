@@ -2,6 +2,8 @@ import hashlib
 import glob
 import json
 import time
+import urllib.request
+
 
 import determine_execute as det
 
@@ -41,19 +43,22 @@ def doble_hash(before_frame_hash,first_hash):
 # @parameter:
 #   hash: ハッシュ値
 #   camera_id: カメラ番号
-#   first_frame_number: 初期フレーム番号
-#   last_frame_number: 最終フレーム番号
-def output_json(hash, camera_id, first_frame_number, last_frame_number,execute):
-        file_path = "./json/" + str(camera_id) + "_" + str(first_frame_number) + "_" + str(last_frame_number) + ".json"
+#   frame_number: フレーム番号
+def output_json(hash, camera_id, frame_number,execute):
+        file_path = "./json/" + str(camera_id) + "_" + str(frame_number) + ".json"
         data = {}
         data["hash"] = hash
         data["camera_id"] = camera_id
-        data["first_frame_number"] = first_frame_number
-        data["last_frame_number"] = last_frame_number
+        data["frame_number"] = frame_number
         data["execute"] = execute
         print(data)
-        with open(file_path, 'w') as outfile:
-                json.dump(data, outfile)
+
+        url = 'http://localhost:4001/api/set'
+        headers = {'Content-Type': 'application/json',}
+        req = urllib.request.Request(url, json.dumps(data).encode(), headers)
+        with urllib.request.urlopen(req) as res:
+                body = json.load(res)
+                
 def main():
         #初期データ取得
         LS = {}
@@ -71,14 +76,13 @@ def main():
         #シミュレーション
         while True:
                 camera_id = (num % 10) + 1
-                first_frame_number = (num // 10) + 1
-                last_frame_number = (num // 10) + 1
-                list[camera_id] = hashlib.sha256(LS[camera_id][last_frame_number].encode()).hexdigest()
+                frame_number = (num // 10) + 1
+                list[camera_id] = hashlib.sha256(LS[camera_id][frame_number].encode()).hexdigest()
 
-                if last_frame_number > 1:
+                if frame_number > 1:
                         #書き込み判定
                         execute = 0
-                        if last_frame_number % 10 == 0 and over == 1:
+                        if frame_number % 10 == 0 and over == 1:
                                 execute = det.determine_execute(camera_id,count,importance,N)
                         if execute == 2:
                                 execute = 1
@@ -92,10 +96,10 @@ def main():
                         #多重ハッシュ化
                         hash = doble_hash(before_frame_hash[camera_id],list[camera_id])
                         #json出力
-                        output_json(hash, camera_id, first_frame_number, last_frame_number,execute)
+                        output_json(hash, camera_id, frame_number,execute)
                 before_frame_hash[camera_id] = list[camera_id]
                 num += 1
-                if camera_id == N and last_frame_number == 1210:
+                if camera_id == N and frame_number == 1210:
                         break
                 if camera_id == N:
                         time.sleep(0.1)
