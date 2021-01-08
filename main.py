@@ -39,12 +39,12 @@ def doble_hash(before_frame_hash,first_hash):
 
 
 
-# json形式で出力。
+# json形式でhttp形式で出力。
 # @parameter:
 #   hash: ハッシュ値
 #   camera_id: カメラ番号
 #   frame_number: フレーム番号
-def output_json(hash, camera_id, frame_number,execute):
+def output_http(hash, camera_id, frame_number,execute):
         file_path = "./json/" + str(camera_id) + "_" + str(frame_number) + ".json"
         data = {}
         data["hash"] = hash
@@ -58,7 +58,7 @@ def output_json(hash, camera_id, frame_number,execute):
         req = urllib.request.Request(url, json.dumps(data).encode(), headers)
         with urllib.request.urlopen(req) as res:
                 body = json.load(res)
-                
+
 def main():
         #初期データ取得
         LS = {}
@@ -96,7 +96,7 @@ def main():
                         #多重ハッシュ化
                         hash = doble_hash(before_frame_hash[camera_id],list[camera_id])
                         #json出力
-                        output_json(hash, camera_id, frame_number,execute)
+                        output_http(hash, camera_id, frame_number,execute)
                 before_frame_hash[camera_id] = list[camera_id]
                 num += 1
                 if camera_id == N and frame_number == 1210:
