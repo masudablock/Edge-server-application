@@ -21,10 +21,14 @@ $ sudo apt install unzip
 $ unzip 20140618_Sequence1a.zip
 ```
 
-### Install node.js and npm
+### Install pip3 scipy
 
 ```
-$ sudo apt install nodejs npm
+$ curl -OL https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+$ sudo apt-get install python3-distutils
+$ sudo apt-get install libgomp1
+$ curl -kL https://bootstrap.pypa.io/get-pip.py | sudo python3
+$ pip3 install scipy pandas open3d
 ```
 
 node 8.10.0 or later is requeired. Please check the version.
