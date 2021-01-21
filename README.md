@@ -1,7 +1,7 @@
-# IOTA-docker
+# Edge server application
 
-Build multiple IOTA test nodes with docker.
-Sample codes for hashed camera data are included.
+get sample point cloud data.
+set up the edge server application for blockchain.
 
 # How to setup
 ## For development evironmenet
@@ -21,12 +21,6 @@ $ sudo apt install unzip
 $ unzip 20140618_Sequence1a.zip
 ```
 
-### Setup Docker
-- Install dokcer & docker compose.
-    - See the officail page of Dcoker.
-        - https://docs.docker.com/engine/install/
-        - https://docs.docker.com/compose/install/
-
 ### Install node.js and npm
 
 ```
@@ -39,11 +33,11 @@ node 8.10.0 or later is requeired. Please check the version.
 $ node -v
 ```
 
-### Setup Docker Instanse 
+### Setup Edge server application
 
 ```
-$ git clone https://github.com/aramsan/iota-docker/
-$ cd iota-docker
+$ git clone https://github.com/masudablock/Edge-server-application.git
+$ cd Edge-server-application
 $ docker-compose build
 ```
 
