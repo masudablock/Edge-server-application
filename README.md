@@ -13,6 +13,14 @@ This information is for a development environmenet. It is assumed PC or virtual 
 - A dual-core or upper CPU
 - Ubuntu 18.04, MacOS X or Later
 
+### Download dataset
+
+```
+$ curl -OL https://www.uni-ulm.de/fileadmin/website_uni_ulm/iui.inst.110/Bilder/Forschung/Datensaetze/20140618_Sequence1a.zip
+$ sudo apt install unzip
+$ unzip 20140618_Sequence1a.zip
+```
+
 ### Setup Docker
 - Install dokcer & docker compose.
     - See the officail page of Dcoker.
