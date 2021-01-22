@@ -51,15 +51,13 @@ python3 main.py
 ```
 
 - Parameters
-    -  camera_id
+    - camera_id
         - This is cammera ID number.
     - frame_number
         - This is a current frame number
     - hash
         - This is stack hashed camera data.
         - Hash algorithm is sha256.
-    -  previous_stansaction_hash
-        - This is previous transaction's hash.
     - execute
         - This is flag of execution.
         - If this parameter exists, writing function to blockchain is executed.
