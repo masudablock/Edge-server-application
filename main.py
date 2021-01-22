@@ -21,7 +21,7 @@ def fetch_raw_data(camera_id):
         path = "../LiDAR_data/Sequence1a/LS_" + id + "/*.csv"
         for i,file in enumerate(sorted(glob.glob(path))):
                 file_data = open(file, "r")
-                file_text ="".join(file_data)
+                file_text ="".join(file_data.read())
                 data.append(file_text)
         return(data)
 
