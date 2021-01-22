@@ -35,6 +35,12 @@ python3 main.py
 
 # Information
 
+- http request
+    - port
+        - http://localhost:4001/api/set
+    - Content-Type
+        - application/json
+
 ```
 {
     "camera_id": num,
