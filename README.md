@@ -32,11 +32,16 @@ $ vagrant up
 $ vagrant ssh
 ```
 
+### Install nodejs
+
+```
+$ cd /vagrant
+$ sudo apt install nodejs npm
+```
 
 ### Download souce code
 
 ```
-$ cd /vagrant
 $ git clone https://github.com/masudablock/Edge-server-application.git
 ```
 
