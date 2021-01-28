@@ -13,9 +13,30 @@ This information is for a development environmenet. It is assumed PC or virtual 
 - A dual-core or upper CPU
 - Ubuntu 18.04, MacOS X or Later
 
+### install homebrew
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+if "Press RETURN to continue or any other key to abort" is shown, press RETURN.
+
+### build virtual machine
+
+```
+$ brew cask install virtualbox
+$ brew cask install vagrant
+$ brew install wget
+$ wget https://app.vagrantup.com/ubuntu/boxes/bionic64/versions/20210125.0.0/providers/virtualbox.box
+$ vagrant init bento/ubuntu-18.04
+$ vagrant up
+$ vagrant ssh
+```
+
+
 ### Download souce code
 
 ```
+$ cd /vagrant
 $ git clone https://github.com/masudablock/Edge-server-application.git
 ```
 
