@@ -1,0 +1,17 @@
+{
+  "name": "test-data-generator",
+  "version": "0.0.1",
+  "description": "To genarate test data.",
+  "main": "main.js",
+  "repository": "https://github.com/gaiax/hls-experiment/branches",
+  "author": "Aram Mine",
+  "license": "MIT",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "csv": "^5.3.2",
+    "dotenv": "^8.2.0",
+    "request": "2.88.2"
+  }
+}
